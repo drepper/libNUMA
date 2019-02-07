@@ -1,0 +1,5 @@
+*.o
+libNUMA-*.tar.bz2
+libNUMA.so
+libNUMA.so.1
+test

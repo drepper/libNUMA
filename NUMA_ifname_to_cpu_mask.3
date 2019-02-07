@@ -1,0 +1,33 @@
+.\" Written by Ulrich Drepper.
+.TH NUMA_IFNAME_TO_CPU_MASK 3 2012-6-21 "Linux" "libNUMA"
+.SH NAME
+NUMA_ifname_to_cpu_mask \- Determine set of CPUs local to device
+.SH SYNOPSIS
+.nf
+.B #include <libNUMA.h>
+
+.BI "int NUMA_ifname_to_cpu_mask(const char *" ifname ", size_t  " destsize,
+.BI "                            cpu_set_t *" dest);
+.fi
+.SH DESCRIPTION
+.BR NUMA_ifname_to_cpu_mask ()
+determines which CPUs are local to the network device identified by
+.IR IFNAME .
+If the network device is a hardware device some CPUs might be connected
+more directly to the device and this is reflected in the mask stored in
+.IR DEST .
+If there is no difference in the access to the device between any core
+then the bits corresponding to all valid CPUs is set in
+.IR DEST .
+.SH RETURN VALUE
+On success
+.BR NUMA_ifname_to_cpu_mask ()
+returns a nonnegative number.
+On error, \-1 is returned and
+.I errno
+is set to indicate the error.
+.SH CONFORMING TO
+This interface is Linux-specific.
+.SH SEE ALSO
+.BR NUMA_cpu_system_count (3)
+.BR NUMA_memnode_system_mask (3)
